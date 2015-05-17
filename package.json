@@ -1,0 +1,22 @@
+{
+  "name": "zeroletas",
+  "version": "1.0.0",
+  "description": "O Zé Roletas joga na roleta por mim.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaocampinhos/Ze-Roletas.git"
+  },
+  "author": "Eu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joaocampinhos/Ze-Roletas/issues"
+  },
+  "homepage": "https://github.com/joaocampinhos/Ze-Roletas",
+  "dependencies": {
+    "primedice": "^0.2.0"
+  }
+}
