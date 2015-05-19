@@ -1,0 +1,86 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="username">
+      <span> </span>
+      <small> </small>
+    </div>
+    <div class="balance"> </div>
+  </header>
+  <section class="stats">
+    stats
+  </section>
+  <h2>Log</h2>
+  <section class="log">
+    <div class="head">
+      <div>HORA</div>
+      <div>APOSTA</div>
+      <div>ROLL</div>
+      <div>LUCRO</div>
+    </div>
+    <div class="line">
+      <div class="hora">10:00</div>
+      <div class="bet">10</div>
+      <div class="roll">40</div>
+      <div class="profit red">-10</div>
+    </div>
+    <div class="line">
+      <div class="hora">10:00</div>
+      <div class="bet">10</div>
+      <div class="roll">40</div>
+      <div class="profit green">10</div>
+    </div>
+    <div class="line">
+      <div class="hora">10:00</div>
+      <div class="bet">10</div>
+      <div class="roll">40</div>
+      <div class="profit red">-10</div>
+    </div>
+    <div class="line">
+      <div class="hora">10:00</div>
+      <div class="bet">10</div>
+      <div class="roll">40</div>
+      <div class="profit red">-10</div>
+    </div>
+    <div class="line">
+      <div class="hora">10:00</div>
+      <div class="bet">10</div>
+      <div class="roll">40</div>
+      <div class="profit red">-10</div>
+    </div>
+  </section>
+
+  <!-- Javascript -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+
+    var socket = io.connect("http://localhost:4000");
+
+    socket.on("user", function(data) {
+      //console.log(data);
+      document.querySelectorAll(".username > span")[0].innerText = data.username;
+      document.querySelectorAll(".username > small")[0].innerText = data.userid;
+      document.querySelectorAll(".balance")[0].innerText = data.balance;
+    });
+
+    socket.on("bet", function(data) {
+      console.log("hora");
+      console.log(data.bet.amount);
+      console.log(data.bet.roll);
+      console.log(data.bet.profit);
+      document.querySelectorAll(".balance")[0].innerText = data.user.balance;
+    });
+
+    socket.on("okok", function(data) {
+       //console.log(data);
+    });
+
+    socket.emit("burp", "abc");
+  </script>
+</body>
+</html>
