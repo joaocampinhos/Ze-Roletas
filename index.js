@@ -31,13 +31,6 @@ io.on('connection', function (socket) {
     }
   });
 
-/*
-  Zé.bet(1, 49.5, '<', function(err, result) {
-    if (err) console.log(err);
-    else io.sockets.emit('bet', result);
-  });
-*/
-
   socket.on('burp', function (data) {
     console.log(data);
     socket.emit('okok', data);
@@ -52,8 +45,7 @@ function bet() {
   });
 };
 
-//setInterval(bet, 2000);
-//bet();
+setInterval(bet, 10000);
 
 server.route({
   method: 'GET',

@@ -23,36 +23,6 @@
       <div>ROLL</div>
       <div>LUCRO</div>
     </div>
-    <div class="line">
-      <div class="hora">10:00</div>
-      <div class="bet">10</div>
-      <div class="roll">40</div>
-      <div class="profit red">-10</div>
-    </div>
-    <div class="line">
-      <div class="hora">10:00</div>
-      <div class="bet">10</div>
-      <div class="roll">40</div>
-      <div class="profit green">10</div>
-    </div>
-    <div class="line">
-      <div class="hora">10:00</div>
-      <div class="bet">10</div>
-      <div class="roll">40</div>
-      <div class="profit red">-10</div>
-    </div>
-    <div class="line">
-      <div class="hora">10:00</div>
-      <div class="bet">10</div>
-      <div class="roll">40</div>
-      <div class="profit red">-10</div>
-    </div>
-    <div class="line">
-      <div class="hora">10:00</div>
-      <div class="bet">10</div>
-      <div class="roll">40</div>
-      <div class="profit red">-10</div>
-    </div>
   </section>
 
   <!-- Javascript -->
@@ -69,11 +39,40 @@
     });
 
     socket.on("bet", function(data) {
-      console.log("hora");
-      console.log(data.bet.amount);
-      console.log(data.bet.roll);
-      console.log(data.bet.profit);
+
+      var bet = document.createElement('div');
+      bet.className = 'line';
+
+      var hora = new Date();
+      var h = new Date().getHours();
+      var m = new Date().getMinutes();
+      var horadiv = document.createElement('div');
+      horadiv.innerText = h + ':' + m;
+
+      var amount = document.createElement('div');
+      amount.innerText = data.bet.amount;
+
+      var roll = document.createElement('div');
+      roll.innerText = data.bet.roll;
+
+      var profit = document.createElement('div');
+      profit.innerText = data.bet.profit;
+
+      if (data.bet.profit > 0)
+        profit.className = 'profit green';
+      else
+        profit.className = 'profit red';
+
+      bet.appendChild(horadiv);
+      bet.appendChild(amount);
+      bet.appendChild(roll);
+      bet.appendChild(profit);
+
+      var node = document.querySelectorAll(".log > .head")[0];
+      node.parentNode.insertBefore(bet, node.nextSibling);
+
       document.querySelectorAll(".balance")[0].innerText = data.user.balance;
+
     });
 
     socket.on("okok", function(data) {
