@@ -75,11 +75,14 @@
 
     });
 
-    socket.on("okok", function(data) {
-       //console.log(data);
+    socket.on('meep', function() {
+      socket.emit('morp');
     });
 
-    socket.emit("burp", "abc");
+    socket.on('stats', function(data) {
+      console.log(data);
+    });
+
   </script>
 </body>
 </html>
